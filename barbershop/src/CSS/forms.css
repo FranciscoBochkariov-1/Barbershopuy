@@ -1,0 +1,290 @@
+/* src/CSS/forms.css */
+
+/* --- Variables (Asegúrate de que estas existan en tu archivo de variables globales o main CSS) --- */
+:root {
+    /* --- Nuevos Colores --- */
+    --color-background-antracita: #1B1B1B;
+    --color-background-gray-steel: #3A3A3A;
+    --color-logo-text-beige: #F2E6D8;
+    --color-main-link-gray: #E0E0E0;
+    --color-button-burgundy: #B02E2E;
+    --color-accent-gold-antique: #C38F2B;
+    
+    /* Colores existentes que se mantienen */
+    --color-primary-dark: #333333;
+    --color-primary-medium: #555555;
+    --color-primary-light: #e0e0e0;
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-accent-gold: #ff8c00;
+    --color-accent-red: #dc3545;
+    --color-text-light: #cccccc;
+    --color-gray-dark: #444444;
+
+    --spacing-xxs: 4px;
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 48px;
+
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-md: 1.125rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 2rem;
+    --font-size-xxl: 2.5rem;
+    --font-size-xxxl: 3.5rem;
+
+    --border-radius-xs: 4px;
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 16px;
+    --shadow-small: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.2);
+    --shadow-large: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Estilos específicos para las páginas de formulario (Login, Register) --- */
+
+.form-page {
+    /* Estas secciones también usan las propiedades de .section en index.css */
+}
+
+/* El fondo de la sección (Sticky) */
+.form-background {
+    background-image: url("/herobarber.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.4);
+}
+
+/* Contenido de la sección de formulario (donde va el formulario real) */
+.form-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-md);
+}
+
+/* Contenedor principal del formulario */
+.form-container {
+    background-color: var(--color-background-gray-steel); /* Nuevo fondo Gris Acero */
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-large);
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    z-index: 10;
+    animation: fadeInScale 0.6s ease-out forwards;
+    color: var(--color-main-link-gray); /* Texto Gris Claro para el contenedor */
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.form-logo-link {
+    display: block;
+    margin-bottom: var(--spacing-md);
+}
+
+.form-logo {
+    width: 100px;
+    height: auto;
+}
+
+.form-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: var(--font-size-xl);
+    color: var(--color-logo-text-beige); /* Nuevo color de título Beige Claro */
+    margin-bottom: var(--spacing-lg);
+    font-weight: 700;
+}
+
+.form-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: var(--font-size-lg);
+    color: var(--color-logo-text-beige); /* Nuevo color de subtítulo Beige Claro */
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+}
+
+/* Mensajes de error y éxito */
+.form-message {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+}
+
+.error-message {
+    color: var(--color-white);
+    background-color: var(--color-accent-red);
+}
+
+.success-message {
+    color: var(--color-white);
+    background-color: #28a745;
+}
+
+/* Estilos para el formulario en sí */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-base);
+    color: var(--color-main-link-gray); /* Letras Gris Claro para labels */
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--color-background-antracita); /* Borde del mismo color que el fondo */
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-base);
+    color: var(--color-main-link-gray); /* Texto de input Gris Claro */
+    background-color: var(--color-background-antracita); /* Nuevo fondo Antracita */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--color-accent-gold-antique); /* Borde Oro Antiguo al enfocar */
+    box-shadow: 0 0 0 3px rgba(195, 143, 43, 0.3);
+}
+
+.form-group input:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+}
+
+/* Botones del formulario */
+.btn-form {
+    background-color: var(--color-button-burgundy); /* Nuevo color Rojo Borgoña */
+    color: var(--color-logo-text-beige); /* Texto Beige Claro */
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-md);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin-top: var(--spacing-sm);
+    width: 100%;
+}
+
+.btn-form:hover:not(:disabled) {
+    background-color: #9c2525; /* Un tono más oscuro al pasar el cursor */
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-small);
+}
+
+.btn-form:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.btn-secondary-form {
+    background-color: transparent;
+    border: 2px solid var(--color-button-burgundy);
+    color: var(--color-button-burgundy);
+}
+
+.btn-secondary-form:hover:not(:disabled) {
+    background-color: var(--color-button-burgundy);
+    color: var(--color-logo-text-beige);
+}
+
+/* Enlaces y textos adicionales */
+.form-link-text {
+    font-size: var(--font-size-base);
+    color: var(--color-main-link-gray); /* Texto Gris Claro */
+    margin-top: var(--spacing-md);
+}
+
+.form-link-text a {
+    color: var(--color-accent-gold-antique); /* Nuevo color de enlace Oro Antiguo */
+    font-weight: 600;
+}
+
+.form-link-text a:hover {
+    text-decoration: underline;
+}
+
+.forgot-password-link {
+    background: none;
+    border: none;
+    color: var(--color-main-link-gray); /* Color inicial Gris Claro */
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    margin-top: var(--spacing-sm);
+    transition: color 0.3s ease;
+}
+
+.forgot-password-link:hover:not(:disabled) {
+    color: var(--color-accent-gold-antique); /* Nuevo color de hover Oro Antiguo */
+    text-decoration: underline;
+}
+
+.forgot-password-link:disabled {
+    cursor: not-allowed;
+    color: #a0a0a0;
+}
+
+/* Sección de restablecer contraseña (inicialmente oculta) */
+.forgot-password-section {
+    margin-top: var(--spacing-xl);
+    border-top: 1px solid var(--color-background-antracita);
+    padding-top: var(--spacing-xl);
+}
+
+/* Utilidades de margen (para usar directamente en el JSX si es necesario) */
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+
+
+/* Media Queries para responsividad */
+@media (max-width: 576px) {
+    .form-container {
+        padding: var(--spacing-md);
+    }
+
+    .form-title {
+        font-size: var(--font-size-xl);
+    }
+
+    .form-group label,
+    .form-group input,
+    .btn-form,
+    .form-link-text,
+    .forgot-password-link {
+        font-size: var(--font-size-base);
+    }
+
+    .form-logo {
+        width: 80px;
+    }
+}

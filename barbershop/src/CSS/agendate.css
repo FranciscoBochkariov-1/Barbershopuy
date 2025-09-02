@@ -1,0 +1,493 @@
+/* src/CSS/agendate.css */
+
+/* --- Variables de color para consistencia --- */
+:root {
+    --color-background-antracita: #1B1B1B;
+    --color-background-gray-steel: #3A3A3A;
+    --color-logo-text-beige: #F2E6D8;
+    --color-main-link-gray: #E0E0E0;
+    --color-button-burgundy: #B02E2E;
+    --color-accent-gold-antique: #C38F2B; /* Manteniendo un acento de color para elementos seleccionados */
+    --color-accent-red: #dc3545;
+    --color-success-green: #28a745;
+}
+
+/* Estilos generales para la sección Agendate */
+.agendate-section {
+    padding: 80px 20px;
+    background-color: var(--color-background-antracita); /* Fondo principal Antracita */
+    color: var(--color-main-link-gray); /* Texto principal Gris Claro */
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+}
+
+.agendate-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-logo-text-beige); /* Título de sección Beige Claro */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-main-link-gray);
+    font-weight: 300;
+}
+
+.agendate-content {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+/* Contenedor del formulario de agendamiento */
+.agendate-form-container {
+    background-color: var(--color-background-gray-steel); /* Fondo del contenedor Gris Acero */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    flex: 1;
+    max-width: 600px;
+}
+
+.form-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    text-align: center;
+    color: var(--color-logo-text-beige); /* Título del formulario Beige Claro */
+}
+
+.agendate-form .form-group {
+    margin-bottom: 25px;
+}
+
+.agendate-form label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--color-main-link-gray); /* Etiquetas Gris Claro */
+}
+
+.agendate-form input[type="text"],
+.agendate-form input[type="tel"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid var(--color-background-antracita);
+    border-radius: 5px;
+    background-color: var(--color-background-antracita); /* Fondo de campos Antracita */
+    color: var(--color-main-link-gray); /* Texto de campos Gris Claro */
+    transition: all 0.3s ease;
+}
+
+.agendate-form input[type="text"]:focus,
+.agendate-form input[type="tel"]:focus {
+    border-color: var(--color-accent-gold-antique);
+    outline: none;
+    box-shadow: 0 0 8px rgba(195, 143, 43, 0.4);
+}
+
+.agendate-form input::placeholder {
+    color: #888; /* Placeholder más claro para legibilidad */
+}
+
+/* Estilo para los campos de usuario autocompletados */
+.agendate-form input[disabled] {
+    background-color: #2b2b2b; /* Un gris un poco más claro para indicar el estado de deshabilitado */
+    color: #aaa; /* Color de texto más claro */
+    cursor: not-allowed;
+}
+
+/* Selección de barbero y servicio */
+.selection-group label {
+    font-size: 1.2rem;
+}
+
+.barbero-selection-grid,
+.servicios-selection-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.barbero-option,
+.servicio-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    background-color: var(--color-background-antracita); /* Fondo de opciones Antracita */
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 10px;
+    transition: all 0.3s ease;
+    flex: 1 1 100px;
+}
+
+.barbero-option:hover,
+.servicio-option:hover {
+    background-color: #2b2b2b; /* Un tono más oscuro de Antracita */
+}
+
+.barbero-option.selected,
+.servicio-option.selected {
+    border-color: var(--color-accent-gold-antique);
+    box-shadow: 0 0 10px rgba(195, 143, 43, 0.6);
+}
+
+.barbero-circle-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #555;
+}
+
+.barbero-name-option {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-main-link-gray);
+}
+
+.servicio-option {
+    justify-content: center;
+    flex: 1 1 calc(50% - 15px);
+}
+
+.servicio-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.servicio-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-logo-text-beige); /* Nombre de servicio Beige Claro */
+}
+
+.servicio-price,
+.servicio-duration {
+    font-size: 0.9rem;
+    color: var(--color-main-link-gray);
+    margin-top: 5px;
+}
+
+/* Selección de fecha y hora */
+.date-picker-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.date-picker-input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid var(--color-background-antracita);
+    border-radius: 5px;
+    background-color: var(--color-background-antracita); /* Fondo del input Antracita */
+    color: var(--color-main-link-gray);
+    cursor: pointer;
+    text-align: center;
+}
+
+.date-picker-input::placeholder {
+    color: #888;
+}
+
+.hour-selection-container {
+    text-align: center;
+}
+
+.hour-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.hour-option {
+    padding: 10px 15px;
+    background-color: var(--color-background-antracita); /* Fondo de hora Antracita */
+    border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 70px;
+    text-align: center;
+}
+
+.hour-option:hover {
+    background-color: var(--color-button-burgundy);
+    color: var(--color-logo-text-beige);
+}
+
+.hour-option.selected {
+    background-color: var(--color-button-burgundy); /* Hora seleccionada Rojo Borgoña */
+    color: var(--color-logo-text-beige);
+    border-color: var(--color-button-burgundy);
+    font-weight: bold;
+}
+
+.no-hours-message {
+    font-style: italic;
+    color: #888;
+    margin-top: 15px;
+}
+
+.loading-hours-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+/* Botón de envío */
+.submit-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-logo-text-beige); /* Texto del botón Beige Claro */
+    background-color: var(--color-button-burgundy); /* Fondo del botón Rojo Borgoña */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 30px;
+}
+
+.submit-button:hover:not(:disabled) {
+    background-color: #9c2525; /* Tono más oscuro de Borgoña al pasar el mouse */
+}
+
+.submit-button:disabled {
+    background-color: #555;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* Contenedor de información */
+.agendate-info-container {
+    flex: 1;
+    max-width: 400px;
+    background-color: var(--color-background-gray-steel); /* Fondo Gris Acero */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.info-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    text-align: center;
+    color: var(--color-logo-text-beige); /* Título de información Beige Claro */
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px; /* Reducida la separación entre ícono y texto */
+    margin-bottom: 15px; /* Reducida la separación entre elementos */
+}
+
+.info-item i {
+    font-size: 1.8rem; /* Aumentado el tamaño del ícono */
+    color: var(--color-logo-text-beige); /* Iconos Beige Claro */
+    margin-top: 5px;
+}
+
+.info-item p {
+    font-size: 1.1rem; /* Aumentado el tamaño de la letra */
+    line-height: 1.5;
+    color: var(--color-main-link-gray);
+}
+
+.info-item strong {
+    color: var(--color-main-link-gray);
+}
+
+.contact-whatsapp {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.contact-whatsapp a {
+    display: inline-block;
+    background-color: var(--color-success-green);
+    color: var(--color-logo-text-beige);
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.contact-whatsapp a:hover {
+    background-color: #128c7e;
+}
+
+/* Mensajes de feedback */
+.success-message,
+.error-message {
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.success-message {
+    background-color: var(--color-success-green);
+    color: var(--color-logo-text-beige);
+}
+
+.error-message {
+    background-color: var(--color-accent-red);
+    color: var(--color-logo-text-beige);
+}
+
+/* Página de carga */
+.loading-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loading-container {
+    text-align: center;
+}
+
+.loading-message {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: var(--color-main-link-gray);
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 992px) {
+    .agendate-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .agendate-form-container,
+    .agendate-info-container {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+    }
+
+    .barbero-selection-grid,
+    .servicios-selection-grid {
+        justify-content: center;
+    }
+
+    .servicio-option {
+        flex: 1 1 150px;
+    }
+}
+
+@media (max-width: 576px) {
+    .agendate-section {
+        padding: 40px 15px;
+    }
+
+    .form-title,
+    .info-title {
+        font-size: 1.5rem;
+    }
+
+    .agendate-form-container,
+    .agendate-info-container {
+        padding: 20px;
+    }
+
+    .barbero-option {
+        flex: 1 1 80px;
+    }
+
+    .servicio-option {
+        flex: 1 1 100%;
+    }
+}
+
+
+
+
+/* Estilos para el contenedor principal de la notificación */
+.notification-prompt-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 100%;
+    max-width: 350px;
+    padding: 1rem;
+    background-color: #2c2c2c; /* Color de fondo oscuro para el contraste */
+    border: 1px solid #ffc107;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Estilos para el botón "Registrarme" */
+.register-prompt-button {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #ffc107;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.register-prompt-button:hover {
+    background-color: #e0ac00;
+    transform: translateY(-2px);
+}
+
+/* Animación para que la notificación aparezca suavemente */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

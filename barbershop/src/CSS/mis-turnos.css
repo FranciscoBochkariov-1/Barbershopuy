@@ -1,0 +1,264 @@
+/*
+ * Archivo: mis-turnos.css
+ * Descripción: Estilos para el panel de control de turnos del usuario.
+ * Diseño minimalista con tabla responsiva, modal de confirmación y notificaciones.
+ */
+
+/* ======================================= */
+/* 1. Variables y Estilos Generales        */
+/* ======================================= */
+
+:root {
+    --color-dark: #121212;
+    --color-light-dark: #1e1e1e;
+    --color-text: #e0e0e0;
+    --color-text-secondary: #a0a0a0;
+    --color-accent: #ff9100;
+    --color-accent-hover: #ffad42;
+    --color-success: #4caf50;
+    --color-error: #f44336;
+    --color-danger: #e53935;
+    --color-danger-hover: #ef5350;
+}
+
+.mis-turnos-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+    background-color: var(--color-dark);
+    color: var(--color-text);
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+}
+
+.mis-turnos-title {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px rgba(255, 145, 0, 0.3);
+}
+
+/* Estilos para mensajes de estado */
+.loading-message,
+.error-message,
+.no-turnos-message {
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: var(--color-text-secondary);
+    background-color: var(--color-light-dark);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.error-message {
+    color: var(--color-error);
+}
+
+/* ======================================= */
+/* 2. Tabla de Turnos (Dashboard)          */
+/* ======================================= */
+
+.dashboard-table-container {
+    width: 100%;
+    max-width: 1000px;
+    overflow-x: auto;
+    background-color: var(--color-light-dark);
+    padding: 1rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.turnos-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px; /* Asegura que la tabla no sea demasiado pequeña en móviles */
+}
+
+.turnos-table th,
+.turnos-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #333;
+    font-size: 0.95rem;
+}
+
+.turnos-table th {
+    background-color: #222;
+    color: var(--color-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.turnos-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.turnos-table tbody tr:hover {
+    background-color: #2a2a2a;
+}
+
+.turnos-table tbody tr:nth-child(odd) {
+    background-color: #1e1e1e;
+}
+
+.turnos-table tbody tr:nth-child(even) {
+    background-color: #1c1c1c;
+}
+
+.cancel-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text);
+    background-color: var(--color-danger);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancel-button:hover {
+    background-color: var(--color-danger-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(229, 57, 53, 0.2);
+}
+
+/* ======================================= */
+/* 3. Modal de Confirmación                */
+/* ======================================= */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.modal-content {
+    background-color: var(--color-light-dark);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    animation: slideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.modal-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.modal-actions .btn-confirm,
+.modal-actions .btn-cancel {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-confirm {
+    background-color: var(--color-danger);
+    color: var(--color-text);
+}
+
+.btn-confirm:hover {
+    background-color: var(--color-danger-hover);
+    transform: translateY(-2px);
+}
+
+.btn-cancel {
+    background-color: #333;
+    color: var(--color-text-secondary);
+}
+
+.btn-cancel:hover {
+    background-color: #444;
+    transform: translateY(-2px);
+}
+
+/* ======================================= */
+/* 4. Notificaciones                       */
+/* ======================================= */
+
+.notification-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    color: var(--color-dark);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 1010;
+    animation: slideInFromRight 0.5s ease-out forwards, fadeOut 0.5s 2.5s ease-in forwards;
+}
+
+.notification-container.success {
+    background-color: var(--color-success);
+}
+
+.notification-container.error {
+    background-color: var(--color-error);
+}
+
+.notification-container p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.notification-container .close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--color-dark);
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* ======================================= */
+/* 5. Animaciones                          */
+/* ======================================= */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}

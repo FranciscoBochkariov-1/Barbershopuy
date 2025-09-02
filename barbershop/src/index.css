@@ -1,0 +1,186 @@
+    /* Fuentes de Google Fonts: DEBEN IR AL PRINCIPIO ABSOLUTO DEL ARCHIVO */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+    /* src/index.css - Estilos globales y reset */
+
+    /* Reset básico */
+    *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
+
+    html {
+    font-size: 62.5%; /* 1rem = 10px */
+    scroll-behavior: smooth; /* Desplazamiento suave para anclas */
+    scroll-behavior: smooth; /* Para un scroll suave al hacer clic en los enlaces */
+    scroll-padding-top: 80px; /* Ajusta esto al alto de tu header fijo para que el contenido no quede oculto */
+}
+
+    body {
+    font-family: 'Poppins', sans-serif; /* Usaremos Poppins globalmente */
+    line-height: 1.6;
+    color: var(--color-text-dark); /* Color de texto por defecto */
+    background-color: var(--color-primary-light); /* Color de fondo por defecto */
+    position: relative; /* Importante para posicionar elementos dentro del body */
+    min-height: 100vh; /* Asegura que el body tenga al menos la altura del viewport */
+    overflow-x: hidden; /* Evita el scroll horizontal */
+    }
+
+
+    /* Variables CSS */
+    :root {
+    --color-primary-dark: #1a1a1a;    /* Negro oscuro */
+    --color-primary-medium: #333333;    /* Gris oscuro */
+    --color-primary-light: #f0f0f0;    /* Blanco grisáceo */
+    --color-accent-red: #e74c3c;      /* Rojo (si lo quieres mantener para algún acento) */
+    --color-accent-gold: #ff8c00;     /* Naranja vibrante para el neón y acentos */
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-text-dark: #2c3e50;      /* Un gris más oscuro para texto */
+    --color-text-light: #ecf0f1;      /* Un gris claro para texto, útil sobre fondos oscuros */
+
+    /* Espaciado */
+    --spacing-xs: 0.5rem;   /* 5px */
+    --spacing-sm: 1rem;     /* 10px */
+    --spacing-md: 2rem;     /* 20px */
+    --spacing-lg: 3rem;     /* 30px */
+    --spacing-xl: 5rem;     /* 50px */
+    --spacing-xxl: 8rem;    /* 80px */
+
+    /* Tamaños de fuente */
+    --font-size-base: 1.6rem;
+    --font-size-sm: 1.4rem;
+    --font-size-md: 1.8rem;
+    --font-size-lg: 2.4rem;
+    --font-size-xl: 3.6rem;
+    --font-size-xxl: 4.8rem;
+    --font-size-logo: 4rem;
+
+    /* Sombras */
+    --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    --shadow-medium: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    --shadow-large: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
+    /* Bordes */
+    --border-radius: 8px;
+    }
+
+    /* Estilos para enlaces generales */
+    a {
+    text-decoration: none;
+    color: inherit; /* Hereda el color del padre por defecto */
+    transition: color 0.3s ease; /* Transición para cambios de color */
+    }
+
+    a:hover {
+    /* Añade aquí estilos de hover si quieres un efecto global en los enlaces */
+    }
+
+
+    /* --- Estilos para el efecto de scroll de "capas" (printer effect) --- */
+
+    /* Contenedor principal para el efecto de scroll (HomePage) */
+    .scroll-effect-container {
+    position: relative;
+    z-index: 1; /* Asegura que el contenido esté por encima del body si tuviera un fondo */
+    background-color: transparent; /* Importante que no tenga fondo propio */
+    /* No necesita min-height aquí, las secciones hijas lo definirán */
+    }
+
+    /* Estilo base para todas las secciones que participan en el efecto */
+    .section {
+    min-height: 100vh; /* Cada sección ocupa al menos 100vh */
+    position: relative; /* Necesario para posicionar el fondo y el contenido */
+    display: flex; /* Para centrar contenido (ej. Hero) o usar flex-direction (ej. Nosotros) */
+    align-items: center; /* Centrar verticalmente el contenido dentro de la sección */
+    justify-content: center; /* Centrar horizontalmente el contenido dentro de la sección */
+    box-sizing: border-box; /* Incluye padding y border en el ancho/alto total */
+    padding: 0; /* No padding directo en la sección, se lo daremos al .section-content */
+    overflow: hidden; /* Importante para que el fondo no desborde o se muestre incorrectamente */
+    /* backdrop-filter: brightness(0.8); /* Opcional: Para oscurecer la imagen de fondo un poco */
+    }
+
+    /* Contenedor del fondo fijo dentro de cada sección */
+    .section-background {
+    position: sticky; /* Hace que el fondo se pegue a la parte superior al hacer scroll */
+    top: 0; /* Se pega al top del viewport */
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Ocupa toda la altura del viewport */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1; /* Detrás del contenido de la sección */
+    /* Agrega una transición suave si cambias el fondo entre secciones con JS */
+    transition: background-image 0.5s ease-in-out, background-color 0.5s ease-in-out;
+    }
+
+    /* Clases específicas para los fondos de cada sección (aplicadas a .section-background) */
+    .hero-bg-image {
+    background-image: url("/herobarber.jpg"); /* La imagen del Hero */
+    }
+
+    .nosotros-bg-color {
+    background-color: var(--color-primary-dark); /* El fondo negro de Nosotros */
+    }
+
+    .noticias-bg-color {
+    background-color: var(--color-white); /* ¡NUEVO! Fondo blanco para Noticias */
+    }
+
+
+    /* Contenido de la sección (texto, imágenes, botones, etc.) */
+    .section-content {
+    position: relative; /* Crucial para que el contenido esté por encima de su propio fondo sticky */
+    z-index: 2; /* Por encima del fondo de la sección y de la sección anterior */
+    width: 100%; /* El contenido ocupa todo el ancho de la sección */
+    height: 100%; /* Ocupa toda la altura disponible de la sección */
+    display: flex; /* Para controlar el layout interno del contenido */
+    flex-direction: column; /* Apila el contenido verticalmente */
+    justify-content: center; /* Centra el contenido verticalmente dentro del .section-content */
+    align-items: center; /* Centra el contenido horizontalmente dentro del .section-content */
+    padding: var(--spacing-xxl) var(--spacing-lg); /* Padding para el contenido */
+    box-sizing: border-box; /* Incluye padding en el tamaño */
+    text-align: center; /* Por defecto, centra el texto, puede ser sobrescrito por clases específicas */
+    }
+
+    /* Clases básicas para animación de entrada (estas sí se quedan aquí porque son generales) */
+    .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px); /* Empieza un poco abajo */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transición suave */
+    /* Puedes añadir un delay aquí si quieres que los elementos aparezcan escalonadamente: */
+    /* transition-delay: 0.1s; */
+    }
+
+    .animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0); /* Vuelve a su posición original */
+    }
+
+    /* MEDIA QUERIES GLOBALES (Opcional, pero buena práctica si hay estilos generales que cambian) */
+    @media (max-width: 768px) {
+    :root {
+        --font-size-xl: 3.2rem;
+        --font-size-xxl: 4rem;
+        --spacing-xxl: 6rem;
+        --spacing-xl: 4rem;
+    }
+    .section-content {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+    }
+
+    @media (max-width: 480px) {
+    :root {
+        --font-size-base: 1.5rem;
+        --font-size-md: 1.6rem;
+        --font-size-lg: 2rem;
+        --font-size-xl: 2.8rem;
+        --font-size-xxl: 3.6rem;
+        --spacing-xxl: 4rem;
+        --spacing-xl: 3rem;
+    }
+    }

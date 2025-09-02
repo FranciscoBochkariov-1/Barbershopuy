@@ -1,0 +1,128 @@
+/* Estilos generales para la sección del héroe */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Contenedores para las imágenes del carrusel */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1.5s ease-in-out; /* Transición para la opacidad */
+}
+
+/* Efecto de capa oscura con la opacidad para todas las imágenes de fondo */
+.hero-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 80% de opacidad para la capa negra, lo que hace que la imagen se vea con un 20% de brillo */
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Clases para mostrar y ocultar las imágenes */
+.hero-background.visible {
+    opacity: 1;
+    z-index: 0;
+}
+
+.hero-background.hidden {
+    opacity: 0;
+    z-index: -1;
+}
+
+/* Contenido del héroe (título, subtítulo, botones) */
+.hero-overlay {
+    position: relative;
+    z-index: 1; /* Asegura que el contenido esté por encima del fondo */
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 900px;
+    width: 90%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    /* Se ha eliminado la propiedad backdrop-filter para evitar errores de compatibilidad */
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hero-button {
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    min-width: 180px;
+    text-align: center;
+}
+
+.hero-button.primary {
+    background-color: #ffc107;
+    color: #1a1a1a;
+    border: 2px solid #ffc107;
+}
+
+.hero-button.secondary {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.hero-button:hover,
+.hero-button:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    .hero-buttons {
+        flex-direction: column;
+    }
+    .hero-button {
+        width: 100%;
+    }
+}

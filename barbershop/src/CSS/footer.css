@@ -1,0 +1,209 @@
+/*
+ * Archivo: footer.css
+ * Descripción: Estilos para un pie de página minimalista, responsivo y moderno.
+ * Utiliza un diseño asimétrico en escritorio que se adapta a un apilamiento limpio en móvil.
+ */
+
+/* ======================================= */
+/* 1. Variables y Estilos Generales        */
+/* ======================================= */
+
+:root {
+    /* Mantenemos las variables de color consistentes con los demás componentes */
+    --color-dark: #121212;
+    --color-light-dark: #1e1e1e;
+    --color-text: #e0e0e0;
+    --color-text-secondary: #a0a0a0;
+    --color-accent: #ff9100; /* Naranja-dorado vibrante */
+    --color-accent-hover: #ffad42;
+    --color-success: #4caf50;
+    --color-error: #f44336;
+}
+
+.footer-section {
+    background-color: var(--color-light-dark);
+    padding: 3rem 1rem;
+    color: var(--color-text);
+    font-family: 'Inter', sans-serif;
+    border-top: 2px solid rgba(255, 145, 0, 0.2); /* Borde sutil para separarlo del contenido principal */
+}
+
+/* ======================================= */
+/* 2. Contenedor Principal                 */
+/* ======================================= */
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* ======================================= */
+/* 3. Estilos por Sección del Footer       */
+/* ======================================= */
+
+.footer-brand {
+    /* Alineación de la marca */
+    justify-self: center;
+    align-self: center;
+    margin-bottom: 1.5rem;
+}
+
+.footer-logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-logo:hover {
+    color: var(--color-accent-hover);
+    transform: scale(1.05);
+}
+
+.footer-slogan {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-top: 0.5rem;
+}
+
+.footer-nav,
+.footer-social,
+.footer-contact {
+    text-align: center;
+}
+
+.footer-nav h4,
+.footer-social h4,
+.footer-contact h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+    position: relative;
+    display: inline-block;
+}
+
+.footer-nav h4::after,
+.footer-social h4::after,
+.footer-contact h4::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 2px;
+    background-color: var(--color-accent);
+    margin: 0.5rem auto 0;
+}
+
+.footer-nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-nav li a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.footer-nav li a:hover {
+    color: var(--color-accent);
+    transform: translateX(5px);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.social-icon {
+    font-size: 2rem;
+    color: var(--color-text-secondary);
+    transition: all 0.3s ease-in-out;
+}
+
+.social-icon:hover {
+    color: var(--color-accent);
+    transform: scale(1.2) translateY(-3px);
+}
+
+.footer-contact p {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+.footer-bottom {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #333;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+}
+
+/* ======================================= */
+/* 4. Media Queries para Responsividad     */
+/* ======================================= */
+
+@media (min-width: 768px) {
+    .footer-container {
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-areas:
+            "brand nav social"
+            "brand nav contact";
+        gap: 2rem 3rem;
+        text-align: left;
+    }
+
+    .footer-brand {
+        grid-area: brand;
+        justify-self: start;
+        align-self: start;
+        margin-bottom: 0;
+    }
+    
+    .footer-nav {
+        grid-area: nav;
+        text-align: left;
+    }
+
+    .footer-social {
+        grid-area: social;
+        text-align: left;
+        margin-bottom: 0;
+    }
+    
+    .footer-contact {
+        grid-area: contact;
+        text-align: left;
+    }
+
+    .footer-nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .social-links {
+        justify-content: flex-start;
+    }
+
+    .footer-nav h4::after,
+    .footer-social h4::after,
+    .footer-contact h4::after {
+        margin: 0.5rem 0 0;
+    }
+}

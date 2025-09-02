@@ -1,0 +1,220 @@
+/*
+ * Archivo: contacto.css
+ * Descripción: Estilos minimalistas y modernos para la sección de contacto.
+ * Incluye estilos para las redes sociales y el formulario de contacto.
+ */
+
+/* ======================================= */
+/* 1. Variables y Estilos Generales        */
+/* ======================================= */
+
+:root {
+    /* Las variables de color se mantienen consistentes en todo el sitio */
+    --color-dark: #121212;
+    --color-light-dark: #1e1e1e;
+    --color-text: #e0e0e0;
+    --color-text-secondary: #a0a0a0;
+    --color-accent: #ff9100; /* Naranja-dorado vibrante */
+    --color-accent-hover: #ffad42;
+    --color-success: #4caf50;
+    --color-error: #f44336;
+}
+
+/* Estilos de la sección principal */
+.contacto-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+    background-color: var(--color-dark);
+    color: var(--color-text);
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+}
+
+/* ======================================= */
+/* 2. Sección del Header                   */
+/* ======================================= */
+
+.contacto-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.section-title {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(255, 145, 0, 0.3);
+}
+
+.tijera-icon {
+    margin-left: 0.5rem;
+}
+
+.section-subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: var(--color-text-secondary);
+}
+
+/* ======================================= */
+/* 3. Contenedor Principal                 */
+/* ======================================= */
+
+.contacto-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 1rem;
+}
+
+/* Estilos de los contenedores de redes sociales y formulario */
+.redes-sociales-container,
+.formulario-container {
+    background-color: var(--color-light-dark);
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+
+.redes-sociales-container h3,
+.formulario-container h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    color: var(--color-text);
+}
+
+.redes-sociales-container p {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
+/* ======================================= */
+/* 4. Iconos de Redes Sociales             */
+/* ======================================= */
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.social-icons a {
+    color: var(--color-text-secondary);
+    font-size: 3rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.icon-instagram:hover {
+    color: var(--color-accent); /* Utiliza el color de acento para el hover */
+    transform: scale(1.1);
+}
+
+.icon-tiktok:hover {
+    color: var(--color-accent);
+    transform: scale(1.1);
+}
+
+.icon-whatsapp:hover {
+    color: var(--color-accent);
+    transform: scale(1.1);
+}
+
+/* ======================================= */
+/* 5. Formulario de Contacto               */
+/* ======================================= */
+
+.contacto-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background-color: #222;
+    color: var(--color-text);
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(255, 145, 0, 0.2);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #777;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.submit-btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    background-color: var(--color-accent);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 10px rgba(255, 145, 0, 0.3);
+}
+
+.submit-btn:hover {
+    background-color: var(--color-accent-hover);
+    transform: translateY(-2px);
+}
+
+.submit-btn:disabled {
+    background-color: #555;
+    color: #a0a0a0;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* ======================================= */
+/* 6. Media Queries para Responsividad     */
+/* ======================================= */
+
+@media (min-width: 768px) {
+    .contacto-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+    .redes-sociales-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+}

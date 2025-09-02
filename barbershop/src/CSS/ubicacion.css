@@ -1,0 +1,147 @@
+/*
+ * Archivo: ubicacion.css
+ * Descripción: Estilos minimalistas y modernos para el componente de ubicación.
+ * Diseñado para ser completamente responsivo y coherente con el resto del sitio.
+ */
+
+/* ======================================= */
+/* 1. Variables y Estilos Generales        */
+/* ======================================= */
+
+:root {
+    /* Las variables de color se mantienen consistentes con el archivo agendate.css */
+    --color-dark: #121212;
+    --color-light-dark: #1e1e1e;
+    --color-text: #e0e0e0;
+    --color-text-secondary: #a0a0a0;
+    --color-accent: #ff9100; /* Naranja-dorado vibrante */
+    --color-accent-hover: #ffad42;
+    --color-success: #4caf50;
+    --color-error: #f44336;
+}
+
+/* Base del cuerpo y la sección de ubicación */
+.ubicacion-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+    background-color: var(--color-dark);
+    color: var(--color-text);
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+}
+
+/* ======================================= */
+/* 2. Sección del Header                   */
+/* ======================================= */
+
+.section-title {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(255, 145, 0, 0.3);
+}
+
+.section-subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+}
+
+/* ======================================= */
+/* 3. Contenedor Principal                 */
+/* ======================================= */
+
+.ubicacion-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Contenedor del mapa y estilos del mapa */
+.map-container {
+    background-color: var(--color-light-dark);
+    padding: 1rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden; /* Asegura que el mapa se ajuste al radio de borde */
+    height: clamp(300px, 60vh, 500px); /* Altura responsiva para el mapa */
+}
+
+/* Estilos para el contenedor del mapa de Leaflet */
+.leaflet-container {
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* ======================================= */
+/* 4. Información de Contacto              */
+/* ======================================= */
+
+.ubicacion-info {
+    background-color: var(--color-light-dark);
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    text-align: left; /* Alinea el texto a la izquierda para mejor lectura */
+}
+
+.ubicacion-info h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    color: var(--color-text);
+}
+
+.ubicacion-info p {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.info-details {
+    margin-top: 1.5rem;
+}
+
+.info-details p {
+    margin-bottom: 0.5rem;
+}
+
+.info-details strong {
+    color: var(--color-text);
+}
+
+/* ======================================= */
+/* 5. Media Queries para Responsividad     */
+/* ======================================= */
+
+@media (min-width: 768px) {
+    .ubicacion-content {
+        grid-template-columns: 2fr 1fr; /* 2/3 para el mapa, 1/3 para la info */
+        gap: 3rem;
+    }
+
+    .ubicacion-section {
+        padding: 4rem 2rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .ubicacion-content {
+        grid-template-columns: 1fr; /* Se apilan en pantallas pequeñas */
+    }
+
+    .map-container {
+        height: 400px;
+    }
+}
