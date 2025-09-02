@@ -24,7 +24,6 @@ const LoginPage = () => {
     const [resetError, setResetError] = useState('');
     const [resetLoading, setResetLoading] = useState(false);
 
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -60,7 +59,7 @@ const LoginPage = () => {
         e.preventDefault();
         setResetMessage('');
         setResetError('');
-        setResetLoading(true); // Activa el loading del botón
+        setResetLoading(true);
 
         if (!resetEmail) {
             setResetError('Por favor, ingresa tu dirección de email.');
@@ -69,27 +68,25 @@ const LoginPage = () => {
         }
 
         try {
-            // ¡NUEVA URL DE API DE DJANGO REST FRAMEWORK!
-            // Ahora esperamos JSON del backend de DRF
-            const response = await fetch('http://localhost:8000/api/password-reset/request/', {
+            // URL corregida para el backend en Render
+            const response = await fetch('https://barberia-backend-tl1f.onrender.com/api/password-reset/request/', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json', // Enviamos JSON a la API de DRF
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ email: resetEmail }),
             });
 
-            const data = await response.json(); // Esperamos una respuesta JSON de la API de DRF
+            const data = await response.json();
 
             if (response.ok) {
                 setResetMessage(data.detail || 'Si tu email está registrado, recibirás un enlace para restablecer tu contraseña.');
-                setResetEmail(''); // Limpiar el campo
+                setResetEmail('');
             } else {
-                // Manejo de errores desde la respuesta JSON de la API de DRF
                 let errorMessage = 'No se pudo procesar la solicitud. Inténtalo de nuevo.';
-                if (data.email) { // Si hay errores de validación en el campo email
+                if (data.email) {
                     errorMessage = `Email: ${data.email.join(', ')}`;
-                } else if (data.detail) { // Mensaje de error general del backend
+                } else if (data.detail) {
                     errorMessage = data.detail;
                 }
                 setResetError(errorMessage);
@@ -99,11 +96,10 @@ const LoginPage = () => {
             setResetError('Hubo un problema al conectar con el servidor. Inténtalo de nuevo.');
             console.error('Network or server error for password reset:', err);
         } finally {
-            setResetLoading(false); // Desactiva el loading del botón
+            setResetLoading(false);
         }
     };
 
-    // Combina los estados de carga
     const isLoading = localLoading || authLoading;
 
     return (

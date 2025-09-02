@@ -12,7 +12,7 @@ const MisTurnos = () => {
     const [error, setError] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [turnoToCancel, setTurnoToCancel] = useState(null);
-    const [notification, setNotification] = useState({ message: '', type: '', visible: false }); // Nuevo estado para la notificación
+    const [notification, setNotification] = useState({ message: '', type: '', visible: false });
 
     useEffect(() => {
         if (authLoading) {
@@ -28,7 +28,8 @@ const MisTurnos = () => {
 
         const fetchTurnos = async () => {
             try {
-                const response = await fetch('http://localhost:8000/api/turnos/', {
+                // URL corregida para el backend en Render
+                const response = await fetch('https://barberia-backend-tl1f.onrender.com/api/turnos/', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Token ${token}`,
@@ -72,7 +73,8 @@ const MisTurnos = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:8000/api/turnos/${turnoToCancel}/`, {
+            // URL corregida para el backend en Render
+            const response = await fetch(`https://barberia-backend-tl1f.onrender.com/api/turnos/${turnoToCancel}/`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Token ${token}`,
@@ -89,20 +91,18 @@ const MisTurnos = () => {
             }
             
             setTurnos(turnos.filter(turno => turno.id !== turnoToCancel));
-            // Muestra la notificación de éxito
             setNotification({ message: 'Turno cancelado exitosamente.', type: 'success', visible: true });
 
             setTimeout(() => {
                 setNotification({ ...notification, visible: false });
-            }, 3000); // La notificación se ocultará después de 3 segundos
+            }, 3000);
 
         } catch (err) {
             console.error("Error al cancelar el turno:", err);
-            // Muestra la notificación de error
             setNotification({ message: err.message, type: 'error', visible: true });
             setTimeout(() => {
                 setNotification({ ...notification, visible: false });
-            }, 5000); // La notificación de error se oculta después de 5 segundos
+            }, 5000);
 
             if (err.message.includes('expirada')) {
                 navigate('/login');
@@ -118,7 +118,6 @@ const MisTurnos = () => {
         setTurnoToCancel(null);
     };
     
-    // Función para cerrar la notificación manualmente
     const handleCloseNotification = () => {
         setNotification({ ...notification, visible: false });
     };
@@ -186,7 +185,6 @@ const MisTurnos = () => {
                 </div>
             )}
 
-            {/* Notificación */}
             {notification.visible && (
                 <div className={`notification-container ${notification.type}`}>
                     <p>{notification.message}</p>

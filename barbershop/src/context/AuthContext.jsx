@@ -1,4 +1,3 @@
-// src/context/AuthContext.jsx
 import React, { createContext, useState, useEffect, useContext, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,6 +12,9 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+
+    // URL base de la API en Render
+    const API_URL = 'https://barberia-backend-tl1f.onrender.com/api/';
 
     // Cargar el estado de autenticación desde localStorage al inicio
     useEffect(() => {
@@ -40,7 +42,7 @@ export const AuthProvider = ({ children }) => {
     const login = useCallback(async (username, password) => {
         setLoading(true);
         try {
-            const response = await fetch('http://localhost:8000/api/login/', {
+            const response = await fetch(`${API_URL}login/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -55,7 +57,6 @@ export const AuthProvider = ({ children }) => {
                 localStorage.setItem('user', JSON.stringify(data.user));
                 setToken(data.token);
                 setUser(data.user);
-                // Redirigir al home SOLAMENTE después del login exitoso
                 navigate('/');
                 return { success: true };
             } else {
@@ -67,7 +68,7 @@ export const AuthProvider = ({ children }) => {
         } finally {
             setLoading(false);
         }
-    }, [navigate]);
+    }, [navigate, API_URL]);
 
     const register = useCallback(async (userData) => {
         setLoading(true);
@@ -81,7 +82,7 @@ export const AuthProvider = ({ children }) => {
                 password: userData.password,
             };
 
-            const response = await fetch('http://localhost:8000/api/register/', {
+            const response = await fetch(`${API_URL}register/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -118,13 +119,13 @@ export const AuthProvider = ({ children }) => {
         } finally {
             setLoading(false);
         }
-    }, [navigate]);
+    }, [navigate, API_URL]);
 
     const logout = useCallback(async () => {
         setLoading(true);
         try {
             if (token) {
-                await fetch('http://localhost:8000/api/logout/', {
+                await fetch(`${API_URL}logout/`, {
                     method: 'POST',
                     headers: {
                         'Authorization': `Token ${token}`,
@@ -141,10 +142,7 @@ export const AuthProvider = ({ children }) => {
             setLoading(false);
             navigate('/login');
         }
-    }, [token, navigate]);
-
-    // SE ELIMINA EL useEffect QUE REDIRIGE MASIVAMENTE AL HOME
-    // La redirección ahora se maneja en las funciones de login y registro.
+    }, [token, navigate, API_URL]);
 
     const contextValue = {
         user,

@@ -8,11 +8,12 @@ import { PacmanLoader } from 'react-spinners';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-// URLs de tu API de Django
-const API_URL_BARBEROS = 'http://localhost:8000/api/barberos/';
-const API_URL_SERVICIOS = 'http://localhost:8000/api/servicios/';
-const API_URL_RESERVAR_TURNO = 'http://localhost:8000/api/turnos/';
-const API_URL_HORARIOS_DISPONIBLES = 'http://localhost:8000/api/horarios-disponibles/';
+// URLs de tu API de Django (CORREGIDAS PARA EL DEPLIEGUE)
+const API_URL = 'https://barberia-backend-tl1f.onrender.com';
+const API_URL_BARBEROS = `${API_URL}/api/barberos/`;
+const API_URL_SERVICIOS = `${API_URL}/api/servicios/`;
+const API_URL_RESERVAR_TURNO = `${API_URL}/api/turnos/`;
+const API_URL_HORARIOS_DISPONIBLES = `${API_URL}/api/horarios-disponibles/`;
 
 const DEFAULT_BARBERO_IMAGE = 'https://placehold.co/100x100/4B5563/FFFFFF?text=Barbero';
 

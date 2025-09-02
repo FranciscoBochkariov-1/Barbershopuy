@@ -1,20 +1,20 @@
-// src/Components/Noticias.jsx
-import React, { useState, useEffect, useCallback } from 'react'; // Agregado useCallback
+import React, { useState, useEffect, useCallback } from 'react';
 import '../CSS/noticias.css'; // Importa el CSS para esta sección
 
 const Noticias = () => {
     const [noticias, setNoticias] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [isRefreshing, setIsRefreshing] = useState(false); // Nuevo estado para el botón
+    const [isRefreshing, setIsRefreshing] = useState(false);
 
     // Usamos useCallback para memoizar la función y evitar su recreación innecesaria
     const fetchNoticias = useCallback(async () => {
-        setLoading(true); // Siempre muestra el estado de carga al iniciar la petición
-        setError(null);   // Limpia errores previos
-        setIsRefreshing(true); // Deshabilita el botón mientras se carga
+        setLoading(true);
+        setError(null);
+        setIsRefreshing(true);
 
-        const API_URL = 'http://localhost:8000/api/noticias/'; // Asegúrate de que esta URL sea correcta
+        // API_URL actualizada para el despliegue
+        const API_URL = 'https://barberia-backend-tl1f.onrender.com/api/noticias/'; 
 
         try {
             const response = await fetch(API_URL);
@@ -29,13 +29,13 @@ const Noticias = () => {
             console.error("Error fetching news:", err);
         } finally {
             setLoading(false);
-            setIsRefreshing(false); // Habilita el botón de nuevo al finalizar
+            setIsRefreshing(false);
         }
-    }, []); // Dependencias vacías, solo se crea una vez
+    }, []);
 
     useEffect(() => {
-        fetchNoticias(); // Llama a fetchNoticias al montar el componente
-    }, [fetchNoticias]); // Dependencia de useCallback
+        fetchNoticias();
+    }, [fetchNoticias]);
 
     const formatDate = (dateString) => {
         try {
@@ -55,7 +55,7 @@ const Noticias = () => {
     };
 
     const handleRefresh = () => {
-        fetchNoticias(); // Llama a la función para recargar las noticias
+        fetchNoticias();
     };
 
     return (
@@ -67,14 +67,14 @@ const Noticias = () => {
                 <button
                     className="refresh-button"
                     onClick={handleRefresh}
-                    disabled={loading || isRefreshing} // Deshabilita si está cargando o refrescando
+                    disabled={loading || isRefreshing}
                 >
                     {isRefreshing ? 'Actualizando...' : <><i className="fas fa-sync-alt"></i> Actualizar Noticias</>}
                 </button>
             </div>
 
-            <div className="noticias-main-content"> {/* Contenedor para el grid y mensajes de estado */}
-                {loading && !isRefreshing ? ( // Solo muestra "Cargando..." en la carga inicial
+            <div className="noticias-main-content">
+                {loading && !isRefreshing ? (
                     <div className="noticias-loading">Cargando noticias...</div>
                 ) : error ? (
                     <div className="noticias-error">Error al cargar las noticias: {error.message}</div>

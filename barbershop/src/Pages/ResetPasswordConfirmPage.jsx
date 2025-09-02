@@ -7,6 +7,9 @@ import logo from '/Logo-barber.png';
 const ResetPasswordConfirmPage = () => {
     const { uid, token } = useParams(); // Obtiene uid y token de la URL
     const navigate = useNavigate();
+    
+    // URL de la API actualizada para el backend en Render
+    const API_URL = 'https://barberia-backend-tl1f.onrender.com/api/password-reset/confirm/';
 
     const [formData, setFormData] = useState({
         new_password: '',
@@ -19,15 +22,15 @@ const ResetPasswordConfirmPage = () => {
 
     // Opcional: Puedes hacer una verificación de validez del token al cargar la página
     // useEffect(() => {
-    //     const verifyToken = async () => {
-    //         // Podrías tener un endpoint en Django para verificar solo el token sin cambiar la contraseña
-    //         // Por ahora, el endpoint de confirmación lo validará al POSTear.
-    //         if (!uid || !token) {
-    //             setIsValidLink(false);
-    //             setError('Enlace de restablecimiento incompleto.');
-    //         }
-    //     };
-    //     verifyToken();
+    //     const verifyToken = async () => {
+    //         // Podrías tener un endpoint en Django para verificar solo el token sin cambiar la contraseña
+    //         // Por ahora, el endpoint de confirmación lo validará al POSTear.
+    //         if (!uid || !token) {
+    //             setIsValidLink(false);
+    //             setError('Enlace de restablecimiento incompleto.');
+    //         }
+    //     };
+    //     verifyToken();
     // }, [uid, token]);
 
     const handleChange = (e) => {
@@ -57,8 +60,7 @@ const ResetPasswordConfirmPage = () => {
         }
 
         try {
-            // ¡NUEVA URL DE API DE DJANGO REST FRAMEWORK PARA CONFIRMACIÓN!
-            const response = await fetch('http://localhost:8000/api/password-reset/confirm/', {
+            const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

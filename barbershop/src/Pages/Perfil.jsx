@@ -16,13 +16,14 @@ const Perfil = () => {
         new_password: '',
         confirm_password: '',
     });
-    const [passwordStrength, setPasswordStrength] = useState(0); // Nuevo estado para la fortaleza de la contraseña
+    const [passwordStrength, setPasswordStrength] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [isEditing, setIsEditing] = useState(false);
     const navigate = useNavigate();
-    const API_URL = 'http://127.0.0.1:8000/api/';
+    // URL de la API actualizada para el backend en Render
+    const API_URL = 'https://barberia-backend-tl1f.onrender.com/api/';
 
     // Usamos useEffect para cargar los datos del usuario al montar el componente
     useEffect(() => {
@@ -121,7 +122,6 @@ const Perfil = () => {
         }
 
         try {
-            // El backend requiere los 3 campos, por lo tanto, es necesario incluirlos.
             const payload = {
                 old_password: passwordData.old_password,
                 new_password: passwordData.new_password,
@@ -173,7 +173,6 @@ const Perfil = () => {
             {error && <p className="error-message">{error}</p>}
             {successMessage && <p className="success-message">{successMessage}</p>}
 
-            {/* Sección de Datos del Perfil */}
             <div className="profile-section profile-info-card">
                 <div className="profile-header">
                     <h2>Datos Personales</h2>
@@ -241,7 +240,6 @@ const Perfil = () => {
                 </form>
             </div>
 
-            {/* Sección de Cambio de Contraseña */}
             <div className="profile-section password-change-card">
                 <h2>Cambiar Contraseña</h2>
                 <form className="password-form" onSubmit={handlePasswordSubmit}>
@@ -264,7 +262,6 @@ const Perfil = () => {
                             onChange={handlePasswordChange}
                             required
                         />
-                        {/* Barra de progreso de fortaleza de contraseña */}
                         {passwordData.new_password && (
                             <div className="password-strength-container">
                                 <div className={`password-strength-bar ${getStrengthClass()}`}
