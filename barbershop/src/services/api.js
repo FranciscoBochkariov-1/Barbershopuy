@@ -1,16 +1,19 @@
 import axios from 'axios';
 
-// Usa una variable de entorno para la URL de la API
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+// Si la variable de entorno VITE_API_URL existe, la usa.
+// Si no, usa la URL de desarrollo local.
+// Esto permite que el código funcione tanto en producción como en desarrollo.
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 const api = axios.create({
-    baseURL: API_BASE_URL,
+    // Concatenamos la URL base con el prefijo /api, ya que Django lo usa para todas las rutas de la API.
+    baseURL: `${API_BASE_URL}/api`,
     headers: {
         'Content-Type': 'application/json',
     },
 });
 
-// Este interceptor añade el token automáticamente a cada petición
+// Este interceptor añade el token de autenticación a cada petición
 api.interceptors.request.use(
     (config) => {
         // La clave del localStorage debe coincidir con la de tu AuthContext, que es 'token'
